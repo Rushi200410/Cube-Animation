@@ -77,3 +77,101 @@ body
     0 0 400px rgba(0,255,0,0.8),
     0 0 500px rgba(0,255,0,1);
 }
+
+
+#clock {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    font-size: 24px;
+    border: 2px solid #333;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.hour-line, .minute-line, .second-line {
+    position: absolute;
+    transform-origin: 50% 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hour-line {
+    width: 20px;
+    height: 120px;
+    top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.minute-line {
+    width: 20px;
+    height: 150px;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.second-line {
+    width: 20px;
+    height: 170px;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.clock_number {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+    margin: 1px 0;
+}
+
+.hour-line .clock_number {
+    color: #000;
+    font-size: 14px;
+}
+
+.minute-line .clock_number {
+    color: #666;
+    font-size: 12px;
+}
+
+.second-line .clock_number {
+    color: #ff0000;
+    font-size: 10px;
+}
+
+.center-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Clock face numbers */
+.face-number {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    transform: translate(-50%, -50%);
+}
+
+.face-number:nth-child(1) { top: 30px; left: 50%; } /* 12 */
+.face-number:nth-child(2) { top: 50%; right: 30px; } /* 3 */
+.face-number:nth-child(3) { bottom: 30px; left: 50%; } /* 6 */
+.face-number:nth-child(4) { top: 50%; left: 30px; } /* 9 */
