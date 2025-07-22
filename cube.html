@@ -1,19 +1,74 @@
-<!doctype htmL>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset=" utf-8">
-    <link rel="stylesheet" href="styleCube.css">
-  </head>
-  <body>
-    <div class="cube">
-      <div class="top"></div>
-      <div>
-        <span style="--i:0;"></span>
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-        <span style="--i:4;"></span>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styleCube.css">
+  <title>Cube and Clock</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      flex-direction: column; /* stack elements vertically */
+      gap: 60px; /* space between cube and clock */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clock Section -->
+  <div id="clock">
+    <div class="face-number">12</div>
+    <div class="face-number">3</div>
+    <div class="face-number">6</div>
+    <div class="face-number">9</div>
+
+    <div class="hour-line" id="hourLine"></div>
+    <div class="minute-line" id="minuteLine"></div>
+    <div class="second-line" id="secondLine"></div>
+
+    <div class="center-dot"></div>
+  </div>
+
+  <!-- Cube Section -->
+  <div class="cube">
+    <div class="top"></div>
+    <div>
+      <span style="--i:0;"></span>
+      <span style="--i:1;"></span>
+      <span style="--i:2;"></span>
+      <span style="--i:3;"></span>
+      <span style="--i:4;"></span>
     </div>
-  </body>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+      const displayHours = hours % 12 || 12;
+      const hourAngle = (hours % 12) * 30 + minutes * 0.5;
+      const minuteAngle = minutes * 6;
+      const secondAngle = seconds * 6;
+
+      function createNumberLine(container, number, count) {
+        container.empty();
+        for (let i = 0; i < count; i++) {
+          container.append(`<div class="clock_number">${number}</div>`);
+        }
+      }
+
+      createNumberLine($("#hourLine"), displayHours, 8);
+      createNumberLine($("#minuteLine"), minutes.toString().padStart(2, '0'), 12);
+      createNumberLine($("#secondLine"), seconds.toString().padStart(2, '0'), 15);
+
+      $("#hourLine").css("transform", `translateX(-50%) rotate(${hourAngle}deg)`);
+      $("#minuteLine").css("transform", `translateX(-50%) rotate(${minuteAngle}deg)`);
+      $("#secondLine").css("transform", `translateX(-50%) rotate(${secondAngle}deg)`);
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
 </html>
